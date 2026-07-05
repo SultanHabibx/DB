@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desh Bangla Sea Food – Khadira LLC</title>
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+    }
+
+    /* ── HEADER / NAV ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #c0001e;
+      box-shadow: 0 3px 10px rgba(0,0,0,.35);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 84px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 76px;
+      width: 76px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,.45));
+      transition: transform .2s;
+    }
+    .nav-logo img:hover { transform: scale(1.06); }
+    .nav-logo span { display: none; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 6px;
+    }
+    nav ul li a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      padding: 8px 20px;
+      border-radius: 25px;
+      border: 2px solid transparent;
+      transition: background .2s, border-color .2s;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: rgba(255,255,255,.15);
+      border-color: rgba(255,255,255,.6);
+    }
+
+    /* ── HERO SECTION ── */
+    #home {
+      min-height: 92vh;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-image-box {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(192,0,30,.4);
+      aspect-ratio: 4/3;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-image-box .placeholder-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-image-box .img-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.75));
+      color: #fff;
+      padding: 24px 20px 16px;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    /* placeholder SVG shown when no real photo is set */
+    .img-placeholder-svg {
+      width: 100%;
+      height: 100%;
+      padding: 40px;
+      opacity: .35;
+      filter: invert(1);
+    }
+
+    .hero-text { color: #1a1a1a; }
+    .hero-text .eyebrow {
+      display: inline-block;
+      background: #c0001e;
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .hero-text h1 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+    .hero-text h1 span { color: #c0001e; }
+    .hero-text .tagline {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .hero-text p {
+      font-size: .97rem;
+      color: #444;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .stat-box {
+      text-align: center;
+      border-left: 3px solid #c0001e;
+      padding-left: 14px;
+    }
+    .stat-box .num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #e8a020;
+      line-height: 1;
+    }
+    .stat-box .label {
+      font-size: .75rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 4px;
+    }
+    .hero-cta {
+      display: inline-block;
+      margin-top: 36px;
+      background: #c0001e;
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 36px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .05em;
+      box-shadow: 0 6px 24px rgba(192,0,30,.45);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(192,0,30,.6);
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 5px;
+      background: linear-gradient(90deg, #c0001e, #e8a020, #c0001e);
+    }
+
+    /* ── QUALITY SECTION ── */
+    #quality {
+      background: #f9f4f0;
+      padding: 90px 24px;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 64px;
+    }
+    .section-header .eyebrow {
+      display: inline-block;
+      background: #c0001e;
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    .section-header h2 span { color: #c0001e; }
+    .section-header p {
+      color: #555;
+      line-height: 1.8;
+      font-size: .97rem;
+    }
+
+    .video-pair {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+    .video-block {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 36px rgba(0,0,0,.13);
+      background: #fff;
+    }
+    .video-block .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #0d0d0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-block .video-wrap video,
+    .video-block .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .video-block .video-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #555;
+      font-size: .88rem;
+      text-align: center;
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+    }
+    .video-block .video-placeholder .play-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      border: 3px solid #333;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      color: #555;
+    }
+    .video-block .video-label {
+      padding: 20px 24px 22px;
+      background: #fff;
+      border-top: 4px solid #c0001e;
+    }
+    .video-block .video-label h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+    .video-block .video-label p {
+      font-size: .85rem;
+      color: #666;
+      line-height: 1.65;
+    }
+    @media (max-width: 750px) {
+      .video-pair { grid-template-columns: 1fr; }
+    }
+
+    /* ── IMPORT ORIGINS SECTION ── */
+    #origins {
+      background: #fff;
+      padding: 90px 24px;
+    }
+    .origins-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .origin-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(0,0,0,.1);
+      position: relative;
+      cursor: default;
+    }
+    .origin-card .card-bg {
+      height: 220px;
+      overflow: hidden;
+    }
+    .origin-card .card-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .origin-card:hover .card-bg img {
+      transform: scale(1.06);
+    }
+    .origin-card .card-body {
+      padding: 24px 22px 28px;
+      background: #fff;
+    }
+    .origin-card h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #1a1a1a;
+    }
+    .origin-card .badge {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+    .origin-card.myanmar .badge { background: #1a6e3c; }
+    .origin-card.india   .badge { background: #e07b00; }
+    .origin-card.ksa     .badge { background: #1e6b1e; }
+    .origin-card p {
+      font-size: .88rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+
+    /* ── DELIVERY SECTION ── */
+    #delivery {
+      background: #fff;
+      padding: 90px 24px;
+    }
+    .delivery-fleet {
+      max-width: 1160px;
+      margin: 0 auto 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .fleet-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(0,0,0,.1);
+      border-top: 4px solid #c0001e;
+      background: #fff;
+    }
+    .fleet-card .fleet-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      background: #f0f0f0;
+    }
+    .fleet-card .fleet-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .fleet-card .fleet-info {
+      padding: 24px 26px 28px;
+    }
+    .fleet-card .fleet-info h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+    .fleet-card .fleet-info .fleet-count {
+      display: inline-block;
+      background: #c0001e;
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+    .fleet-card .fleet-info p {
+      font-size: .9rem;
+      color: #555;
+      line-height: 1.7;
+    }
+    .delivery-coverage {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .delivery-coverage h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .delivery-coverage h3 span { color: #c0001e; }
+    .region-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .region-card {
+      background: #f9f4f0;
+      border-radius: 12px;
+      padding: 20px 18px;
+      text-align: center;
+      border-left: 4px solid #c0001e;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .region-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.1);
+    }
+    .region-card .region-name {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    .region-card .region-label {
+      font-size: .72rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 4px;
+    }
+    .delivery-note {
+      text-align: center;
+      margin-top: 36px;
+      background: linear-gradient(135deg, #c0001e, #8a0015);
+      color: #fff;
+      border-radius: 14px;
+      padding: 24px 32px;
+      max-width: 700px;
+      margin: 36px auto 0;
+    }
+    .delivery-note p {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.7;
+    }
+    .delivery-note span { color: #ffd080; font-weight: 800; }
+    @media (max-width: 750px) {
+      .delivery-fleet { grid-template-columns: 1fr; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0f0f;
+      color: #aaa;
+      font-size: .88rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 32px 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      border-bottom: 1px solid #222;
+    }
+    .footer-brand img {
+      height: 64px;
+      width: 64px;
+      object-fit: contain;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .footer-brand p {
+      color: #888;
+      line-height: 1.75;
+      font-size: .85rem;
+    }
+    .footer-col h4 {
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #c0001e;
+      display: inline-block;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .footer-col ul li {
+      color: #888;
+      font-size: .87rem;
+      line-height: 1.5;
+    }
+    .footer-col ul li a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-col ul li a:hover {
+      color: #c0001e;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding: 20px 32px;
+      color: #555;
+      font-size: .78rem;
+      letter-spacing: .04em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hero-image-box { max-width: 520px; margin: 0 auto; width: 100%; }
+      .origins-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-inner { padding: 0 16px; }
+      nav ul li a { padding: 7px 12px; font-size: .82rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header>
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <!-- Replace src with the actual logo file path once available -->
+      <img src="DB LOGO ORIGINAL.jpeg" alt="Desh Bangla Sea Food Logo" onerror="this.style.display='none'" />
+      <span>Desh Bangla<br>Sea Food</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="catalog.html">Fish Catalog</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ════════════════════════════════════════
+     HERO / INTRO
+════════════════════════════════════════ -->
+<section id="home">
+  <div class="hero-inner">
+
+    <!-- Left: image placeholder — swap src to a real product/warehouse photo -->
+    <div class="hero-image-box">
+      <img src="frontimage1.jpg" alt="Desh Bangla Sea Food" class="placeholder-img" />
+    </div>
+
+    <!-- Right: intro text -->
+    <div class="hero-text">
+      <h1>Bringing the <span>Finest Frozen Fish</span> to Your Table</h1>
+      <p class="tagline">Straight from Myanmar's deep waters — freshness you can trust.</p>
+      <p>
+        Desh Bangla Sea Food, operating under <strong style="color:#c0001e;">Khadira LLC for Meat and Fish Trading Est.</strong>,
+        is a trusted supplier of premium frozen fish across the Kingdom of Saudi Arabia.
+        With a supply chain built on strict cold-chain logistics, every fish we import
+        travels from certified Myanmar fisheries directly to your market — frozen at peak
+        freshness and never compromised.
+      </p>
+      <p>
+        Beyond fish, we supply quality beef sourced from India and fresh local KSA chicken,
+        giving our partners a single, reliable source for all their protein needs.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="num">100%</div>
+          <div class="label">Cold Chain</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">3+</div>
+          <div class="label">Import Origins</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">KSA</div>
+          <div class="label">Based &amp; Licensed</div>
+        </div>
+      </div>
+      <a href="#contact" class="hero-cta">Get In Touch →</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ════════════════════════════════════════
+     QUALITY & PROCESS
+════════════════════════════════════════ -->
+<section id="quality">
+  <div class="section-header">
+    <span class="eyebrow">Quality &amp; Control</span>
+    <h2>How We Ensure <span>Premium Quality</span> Every Step of the Way</h2>
+    <p>
+      From the moment a fish is caught to the second it reaches our customer's freezer,
+      Desh Bangla Sea Food enforces a rigorous, multi-stage quality control process
+      that never cuts corners.
+    </p>
+  </div>
+
+  <div class="video-pair">
+
+    <!-- VIDEO 1 — Packing process. Replace src with your video file or swap the <video> for an <iframe> YouTube embed -->
+    <div class="video-block">
+      <div class="video-wrap">
+        <video controls poster="">
+          <source src="packing.mp4" type="video/mp4" />
+        </video>
+        <!-- Shown only when the video file is missing — remove once real video is linked -->
+        <div class="video-placeholder" id="pack-placeholder">
+          <div class="play-icon">▶</div>
+          <span>Packing Process Video<br><small>Replace <code>packing.mp4</code> with your file</small></span>
+        </div>
+      </div>
+      <div class="video-label">
+        <h3>Our Packing Process</h3>
+        <p>Watch how every fish is handled, portioned, and sealed under strict hygienic conditions before it leaves our facility — ensuring freshness is locked in at every step.</p>
+      </div>
+    </div>
+
+    <!-- VIDEO 2 — Quality control. Replace src with your video file or swap for an <iframe> YouTube embed -->
+    <div class="video-block">
+      <div class="video-wrap">
+        <video controls poster="">
+          <source src="qallity.mp4" type="video/mp4" />
+        </video>
+        <div class="video-placeholder" id="qc-placeholder">
+          <div class="play-icon">▶</div>
+          <span>Quality Control Video<br><small>Replace <code>quality-control.mp4</code> with your file</small></span>
+        </div>
+      </div>
+      <div class="video-label">
+        <h3>Quality Control &amp; Inspection</h3>
+        <p>See our team carry out rigorous arrival inspections and SFDA-compliant lab checks — verifying every batch for freshness, weight, and safety before it ever reaches a customer.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ════════════════════════════════════════
+     IMPORT ORIGINS
+════════════════════════════════════════ -->
+<section id="origins">
+  <div class="section-header">
+    <span class="eyebrow">Our Sources</span>
+    <h2>Where Our <span>Products Come From</span></h2>
+    <p>We import from carefully selected origins chosen for their product quality, food safety standards, and longstanding trade relationships.</p>
+  </div>
+
+  <div class="origins-grid">
+    <div class="origin-card myanmar">
+      <div class="card-bg"><img src="fishim.jpg" alt="Frozen Fish" /></div>
+      <div class="card-body">
+        <h3>Myanmar</h3>
+        <span class="badge">Primary — Frozen Fish</span>
+        <p>The heart of our business. Myanmar's rich coastal and river fisheries supply us with a wide variety of premium frozen fish species — our core product and biggest focus.</p>
+      </div>
+    </div>
+    <div class="origin-card india">
+      <div class="card-bg"><img src="beef.jpg" alt="Beef" /></div>
+      <div class="card-body">
+        <h3>India</h3>
+        <span class="badge">Beef Imports</span>
+        <p>Quality halal beef sourced from certified Indian suppliers. Every shipment is accompanied by full halal certification and SFDA-approved import documentation.</p>
+      </div>
+    </div>
+    <div class="origin-card ksa">
+      <div class="card-bg"><img src="chicken.jpg" alt="Chicken" /></div>
+      <div class="card-body">
+        <h3>Local KSA</h3>
+        <span class="badge">Fresh Chicken</span>
+        <p>Supporting local production, we source fresh chicken from licensed Saudi farms. Short supply chains mean faster delivery and maximum freshness for our customers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════
+     DELIVERY
+════════════════════════════════════════ -->
+<section id="delivery">
+  <div class="section-header">
+    <span class="eyebrow">Our Fleet</span>
+    <h2>Cold-Chain <span>Delivery Across KSA</span></h2>
+    <p>Every vehicle in our fleet is equipped with a refrigerated cold freezer unit, ensuring your products stay at the right temperature from our warehouse to your door.</p>
+  </div>
+
+  <div class="delivery-fleet">
+
+    <div class="fleet-card">
+      <!-- Replace src with your dyna truck photo -->
+      <img src="dyna.jpeg" alt="Dyna Delivery Truck" class="fleet-img"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="fleet-img-placeholder" style="display:none;">Place Dyna Photo Here</div>
+      <div class="fleet-info">
+        <h3>Dyna Refrigerated Trucks</h3>
+        <p>Our fleet of 5 Dyna trucks handles bulk deliveries across all major KSA regions. Each truck is fitted with a commercial cold freezer unit maintaining sub-zero temperatures throughout the journey.</p>
+      </div>
+    </div>
+
+    <div class="fleet-card">
+      <!-- Replace src with your microbus photo -->
+      <img src="micro bus.png" alt="Microbus Delivery Vehicle" class="fleet-img"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="fleet-img-placeholder" style="display:none;">Place Microbus Photo Here</div>
+      <div class="fleet-info">
+        <h3>Microbus Refrigerated Vans</h3>
+        <p>Our 2 refrigerated microbuses are used for smaller, faster deliveries and last-mile distribution — flexible enough to reach restaurants and retailers in busy city areas.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="delivery-coverage">
+    <h3>Weekly Deliveries to <span>8 Regions Across KSA</span></h3>
+    <div class="region-grid">
+      <div class="region-card">
+        <div class="region-name">Jeddah</div>
+        <div class="region-label">Weekly</div>
+      </div>
+      <div class="region-card">
+        <div class="region-name">Makkah</div>
+        <div class="region-label">Weekly</div>
+      </div>
+      <div class="region-card">
+        <div class="region-name">Madinah</div>
+        <div class="region-label">Weekly</div>
+      </div>
+      <div class="region-card">
+        <div class="region-name">Taif</div>
+        <div class="region-label">Weekly</div>
+      </div>
+      <div class="region-card">
+        <div class="region-name">Tabuk</div>
+        <div class="region-label">Weekly</div>
+      </div>
+      <div class="region-card">
+        <div class="region-name">Jizan</div>
+        <div class="region-label">Weekly</div>
+      </div>
+      <div class="region-card">
+        <div class="region-name">Najran</div>
+        <div class="region-label">Weekly</div>
+      </div>
+      <div class="region-card">
+        <div class="region-name">Eastern Region</div>
+        <div class="region-label">Weekly</div>
+      </div>
+    </div>
+
+    <div class="delivery-note">
+      <p>All deliveries are made <span>every week</span> with a fleet of <span>cold-chain vehicles</span> covering the entire Kingdom of Saudi Arabia.</p>
+    </div>
+  </div>
+
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer id="contact">
+  <div class="footer-inner">
+
+    <div class="footer-brand">
+      <img src="DB LOGO ORIGINAL.jpeg" alt="Desh Bangla Sea Food" />
+      <p>Premium frozen seafood and meat supplier operating across the Kingdom of Saudi Arabia. Committed to quality, cold-chain integrity, and reliable partnerships.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li>Desh Bangla Sea Food</li>
+        <li>Khadira LLC for Meat &amp; Fish Trading Est.</li>
+        <li>Kingdom of Saudi Arabia</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li>Frozen Fish — Myanmar</li>
+        <li>Halal Beef — India</li>
+        <li>Fresh Chicken — Local KSA</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="mailto:Khadira.almaasali@gmail.com">Khadira.almaasali@gmail.com</a></li>
+        <li><a href="https://wa.me/966555838307" target="_blank" rel="noopener">0555838307 (WhatsApp)</a></li>
+        <li>Kingdom of Saudi Arabia</li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Desh Bangla Sea Food &mdash; Khadira LLC for Meat &amp; Fish Trading Est. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<script>
+  /* Hide video placeholders once the browser can load the video */
+  document.querySelectorAll('.video-wrap video').forEach(v => {
+    v.addEventListener('canplay', () => {
+      const ph = v.closest('.video-wrap').querySelector('.video-placeholder');
+      if (ph) ph.style.display = 'none';
+    });
+  });
+
+  /* Active nav highlight on scroll */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 90) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+</script>
+
+</body>
+</html>
